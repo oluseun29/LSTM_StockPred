@@ -5,12 +5,14 @@ import tensorflow as tf
 from keras.models import load_model
 import streamlit as st
 
+import scipy as sklearn
 start = '2010-01-01'
 end = '2019-12-31'
 
 st.title('Stock Trend Prediction')
 
-user_input = st.text_input('Enter Stock Ticker', 'AAPL')
+stocks = ('AAPL', 'GOOG', 'MSFT', 'TSLA', 'GME')
+user_input = st.text_input('Enter Stock Ticker', stocks)
 import yfinance as yf
 data = yf.download('AAPL', start = start, end=end)
 df = data.copy()
@@ -73,7 +75,7 @@ x_test, y_test = np.array(x_test), np.array(y_test)
 y_pred = model.predict(x_test)
 scaler = scaler.scale_
 scale_factor = 1/scaler[0]
-y_pred = y_pred * scale_factor
+y_pred = y_pred * scale_factorpo
 plt.figure(figsize = (12, 6))
 y_test = y_test * scale_factor
 
