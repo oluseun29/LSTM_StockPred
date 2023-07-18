@@ -11,10 +11,10 @@ end = '2019-12-31'
 
 st.title('Stock Trend Prediction')
 
-stocks = ('AAPL', 'GOOG', 'MSFT', 'TSLA', 'GME')
-user_input = st.text_input('Enter Stock Ticker', 'MSFT')
+stocks = []
+user_input = st.text_input('Enter Stock Ticker', stocks)
 import yfinance as yf
-data = yf.download('AAPL', start = start, end=end)
+data = yf.download(stocks, start = start, end=end)
 df = data.copy()
 
 #describe the data
